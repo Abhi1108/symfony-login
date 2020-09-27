@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{{ path('home.index') }}" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path('registration.index') }}">Register</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="{{ path('registration.index') }}">Register</a></li>
+    </ul>
+
+    {% for message in app.flashes('success') %}
+        <div class="materialert success container">
+            <i class="material-icons">check_circle</i> {{message}}
+            <button type="button" onclick="removeAlert(this)" class="close-alert">×</button>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="materialert error container">
+            <i class="material-icons">check_circle</i> {{message}}
+            <button type="button" onclick="removeAlert(this)" class="close-alert">×</button>
+        </div>
+    {% endfor %}
+
+    {{ form(form) }}
+{% endblock %}

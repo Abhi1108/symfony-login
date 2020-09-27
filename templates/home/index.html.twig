@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <nav>
+        <div class="nav-wrapper">
+            <a href="{{ path('home.index') }}" class="brand-logo">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="{{ path('registration.index') }}">Register</a></li>
+                <li><a href="{{ path('home.logout') }}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="{{ path('registration.index') }}">Register</a></li>
+        <li><a href="{{ path('home.logout') }}">Logout</a></li>
+    </ul>
+
+    {% for message in app.flashes('notice') %}
+        <div class="materialert notice container">
+            <i class="material-icons">check_circle</i> {{message}}
+            <button type="button" onclick="removeAlert(this)" class="close-alert">×</button>
+        </div>
+    {% endfor %}
+
+    {% if userList == true %}
+        <table class="table table-bordered container">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in userList %}
+                    <tr>
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <a href="{{ path('home.delete',{id: user.id}) }}" class="btn red lighten-1">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {{ form(form) }}
+{% endblock %}

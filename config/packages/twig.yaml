@@ -1,0 +1,16 @@
+twig:
+  default_path: "%kernel.project_dir%/templates"
+  debug: "%kernel.debug%"
+  strict_variables: "%kernel.debug%"
+  exception_controller: null
+  form_theme: "materialize_layout.html.twig"
+framework:
+  session:
+    # enables the support of sessions in the app
+    enabled: true
+    # ID of the service used for session storage.
+    # NULL means that Symfony uses PHP default session mechanism
+    handler_id: null
+    # improves the security of the cookies used for sessions
+    cookie_secure: "auto"
+    cookie_samesite: "lax"
